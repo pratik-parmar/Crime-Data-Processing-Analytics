@@ -1,0 +1,10 @@
+
+SELECT 
+  `Primary Type` AS crime_type,
+  COUNT(*) AS total_crimes
+FROM 
+  workspace.default.cleaned_chicago_crimes
+GROUP BY 
+  1
+ORDER BY 
+  total_crimes DESC;
