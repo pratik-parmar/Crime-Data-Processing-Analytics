@@ -1,0 +1,22 @@
+SELECT 
+  CASE 
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'E') = 'Mon' THEN 'Mon'
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'E') = 'Tue' THEN 'Tue '
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'E') = 'Wed' THEN 'Wed  '
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'E') = 'Thu' THEN 'Thu   '
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'E') = 'Fri' THEN 'Fri    '
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'E') = 'Sat' THEN 'Sat     '
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'E') = 'Sun' THEN 'Sun      '
+  END AS day_of_week,
+  HOUR(CAST(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a') AS TIMESTAMP)) AS crime_hour,
+  COUNT(*) AS total_crimes
+FROM 
+  workspace.default.cleaned_chicago_crimes
+WHERE 
+  `Date` IS NOT NULL 
+  AND to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a') IS NOT NULL
+GROUP BY 
+  1, 2
+ORDER BY 
+  LENGTH(day_of_week) ASC,
+  crime_hour ASC;
