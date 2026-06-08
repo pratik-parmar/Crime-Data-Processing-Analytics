@@ -1,0 +1,12 @@
+SELECT 
+  `Location Description` AS location_type,
+  COUNT(*) AS total_crimes
+FROM 
+  workspace.default.cleaned_chicago_crimes
+WHERE 
+  `Location Description` IS NOT NULL
+GROUP BY 
+  1
+ORDER BY 
+  total_crimes DESC
+LIMIT 10;
