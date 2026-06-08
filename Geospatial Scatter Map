@@ -1,0 +1,10 @@
+SELECT 
+  Latitude,
+  Longitude,
+  `Primary Type` AS crime_type,
+  Arrest
+FROM 
+  workspace.default.cleaned_chicago_crimes
+WHERE 
+  Latitude IS NOT NULL 
+  AND Longitude IS NOT NULL;
