@@ -1,0 +1,10 @@
+SELECT 
+  Latitude,
+  Longitude,
+  CAST(Cluster AS STRING) AS cluster_id,
+  `Primary Type`,
+  District,
+  Year,
+  Arrest
+FROM 
+  workspace.default.chicago_crimes_clustered;
