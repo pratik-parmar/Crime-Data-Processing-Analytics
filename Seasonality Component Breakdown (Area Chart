@@ -1,0 +1,25 @@
+SELECT 
+  CASE 
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'LLL') = 'Jan' THEN 'Jan'
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'LLL') = 'Feb' THEN 'Feb '
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'LLL') = 'Mar' THEN 'Mar  '
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'LLL') = 'Apr' THEN 'Apr   '
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'LLL') = 'May' THEN 'May    '
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'LLL') = 'Jun' THEN 'Jun     '
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'LLL') = 'Jul' THEN 'Jul      '
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'LLL') = 'Aug' THEN 'Aug       '
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'LLL') = 'Sep' THEN 'Sep        '
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'LLL') = 'Oct' THEN 'Oct         '
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'LLL') = 'Nov' THEN 'Nov          '
+    WHEN date_format(to_timestamp(`Date`, 'MM/dd/yyyy hh:mm:ss a'), 'LLL') = 'Dec' THEN 'Dec           '
+  END AS crime_month,
+  `Primary Type` AS crime_type,
+  COUNT(*) AS total_crimes
+FROM 
+  workspace.default.cleaned_chicago_crimes
+WHERE 
+  `Date` IS NOT NULL
+GROUP BY 
+  1, 2
+ORDER BY 
+  LENGTH(crime_month) ASC;
