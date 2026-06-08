@@ -1,0 +1,5 @@
+
+SELECT 
+  COUNT(*) AS current_total_crimes
+FROM 
+  workspace.default.cleaned_chicago_crimes;
