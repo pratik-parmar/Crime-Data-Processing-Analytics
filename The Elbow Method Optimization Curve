@@ -1,0 +1,7 @@
+SELECT 
+  k_value,
+  inertia_value
+FROM 
+  workspace.default.chicago_kmeans_evaluation_summary
+ORDER BY 
+  k_value ASC;
